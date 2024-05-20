@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './CreateRecipe.css'
 
-export default function CreateRecipe() {
+export default function CreateRecipe({addRecipeCb}) {
     const emptyRecipe = {
         title: "",
         img: "",
@@ -12,13 +12,20 @@ export default function CreateRecipe() {
 
     const [recipe, setRecipe] = useState(emptyRecipe)
 
-    function handleChange(){
-
+    function handleChange(e){
+        const value = e.target.value;
+        setRecipe({
+          ...recipe,
+          [e.target.name]: value
+        });
     }
 
     function handleSubmit(e){
         e.preventDefault()
-
+        const newInput = { title: recipe.title, img: recipe.img, ingredients: recipe.ingredients, method: recipe.method };
+        // console.log(newInput)
+        addRecipeCb(newInput);
+        setRecipe(emptyRecipe);
     }
 
   return (
@@ -37,7 +44,7 @@ export default function CreateRecipe() {
                     Image:
                     <input type = "text"
                         onChange = {handleChange}
-                        name = "image"
+                        name = "img"
                         value = {recipe.img} />
                 </label>
                 <label>
@@ -48,7 +55,7 @@ export default function CreateRecipe() {
                         value = {recipe.ingredients} />
                 </label>
                 <label>
-                    Title:
+                    Method:
                     <textarea type = "text"
                         onChange = {handleChange}
                         name = "method"

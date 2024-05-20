@@ -19,7 +19,7 @@ router.get("/library", async function(req, res) {
   }
 });
 
-// GET one student
+// GET a specific recipe
 router.get("/library/:id", async function(req, res) {
   //your code here
   try {
