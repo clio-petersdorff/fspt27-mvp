@@ -1,0 +1,32 @@
+.form-input {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    color:black;
+    text-align:left;
+  }
+  
+  input[type="text"],
+  textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+  }
+  
+  textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px; /* Minimum height for text areas */
+  }

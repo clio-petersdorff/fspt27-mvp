@@ -1,0 +1,69 @@
+[
+    {
+        "title": "Mushroom carbonara",
+        "img": "",
+        "ingredients": ["mushroom", "pasta", "cashews", "onion"],
+        "method":[]
+    },
+    {
+        "title": "One-pot lasagne",
+        "img": "",
+        "ingredients": ["mushrooms", "tomato","lasange sheets", "carrot", "celery", "onion", "vegan cheese", "miso paste"],
+        "method":[]
+    },
+    {
+        "title": "Butter 'chicken' curry",
+        "img": "",
+        "ingredients": ["tofu", "coconut milk", "tomato","rice","cashews", "garam masala"],
+        "method":[]
+    },
+    {
+        "title": "Caesar salad",
+        "img": "",
+        "ingredients": ["little gem lettuce", "chickpeas", "tofu", "tomato paste", "tenderstem broccoli", "cashews", "capers"],
+        "method":[]
+    },
+    {
+        "title": "Mushroom risotto",
+        "img": "",
+        "ingredients": ["aborio rice", "stock", "mushrooms", "garlic", "white wine"],
+        "method":[]
+    },
+    {
+        "title": "Tofu scramble",
+        "img": "",
+        "ingredients": ["tofu", "cherry tomatoes", "spring onion", "soughdough bread"],
+        "method":[]
+    },
+    {
+        "title": "Jackfruit tacos",
+        "img": "",
+        "ingredients": ["tacos", "onion", "bbq sauce", "jackfruit", "red pepper", "avocado"],
+        "method":[]
+    },
+    {
+        "title": "Pesto pasta",
+        "img": "",
+        "ingredients": ["basil", "lemon juice", "sunflower seeds", "tenderstem broccoli", "pasta", "garlic"],
+        "method":[]
+    },
+    {
+        "title": "Pad Thai",
+        "img": "",
+        "ingredients": ["flat noodles", "soy sauce", "tofu", "carrot", "red pepper", "spring onion", "basil", "tamarind sauce"],
+        "method":[]
+    },
+    {
+        "title": "Kale salad",
+        "img": "",
+        "ingredients": ["kale", "mushrooms", "mustard", "sunflower seeds", "cashews", "nutritional yeast"],
+        "method":[]
+    },
+    {
+        "title": "Gyros",
+        "img": "",
+        "ingredients": [],
+        "method":""
+    }
+  ]
+  
