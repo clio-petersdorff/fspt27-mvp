@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link , Outlet} from "react-router-dom";
 
 // import './Schedule.css'
 
@@ -15,6 +16,9 @@ export default function Schedule() {
         <div>Friday <button>+</button></div>
         <div>Saturday <button>+</button></div>
         <div>Sunday <button>+</button></div>
+        <div>
+        <Outlet/>
+      </div>
     </div>
   )
 }

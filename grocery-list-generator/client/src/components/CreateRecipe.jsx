@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link , Outlet} from "react-router-dom";
 
 import './CreateRecipe.css'
 
@@ -64,6 +65,9 @@ export default function CreateRecipe({addRecipeCb}) {
             </div>
             <button type = "submit">Submit</button>
         </form>
+        <div>
+        <Outlet/>
+      </div>
     </div>
   )
 }
