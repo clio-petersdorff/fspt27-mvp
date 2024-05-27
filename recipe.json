@@ -1,69 +1,69 @@
 [
     {
         "title": "Mushroom carbonara",
-        "img": "",
+        "img": "https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2020/04/vegan-carbonara-portion-800x1200.jpg",
         "ingredients": ["mushroom", "pasta", "cashews", "onion"],
         "method":[]
     },
     {
         "title": "One-pot lasagne",
-        "img": "",
+        "img": "https://www.eat-this.org/wp-content/uploads/2020/03/eat_this_die_leckerste_vegane_lasagnesuppe-960x640@2x.jpg",
         "ingredients": ["mushrooms", "tomato","lasange sheets", "carrot", "celery", "onion", "vegan cheese", "miso paste"],
         "method":[]
     },
     {
         "title": "Butter 'chicken' curry",
-        "img": "",
+        "img": "https://cdn.pickuplimes.com/cache/e6/95/e695f8d49e4fffbe9680f12ab5125a3e.jpg",
         "ingredients": ["tofu", "coconut milk", "tomato","rice","cashews", "garam masala"],
         "method":[]
     },
     {
         "title": "Caesar salad",
-        "img": "",
+        "img": "https://simple-veganista.com/wp-content/uploads/2019/03/best-vegan-caesar-salad-4jpg.jpg",
         "ingredients": ["little gem lettuce", "chickpeas", "tofu", "tomato paste", "tenderstem broccoli", "cashews", "capers"],
         "method":[]
     },
     {
         "title": "Mushroom risotto",
-        "img": "",
+        "img": "https://cdn.loveandlemons.com/wp-content/uploads/2023/01/mushroom-risotto-recipe.jpg",
         "ingredients": ["aborio rice", "stock", "mushrooms", "garlic", "white wine"],
         "method":[]
     },
     {
         "title": "Tofu scramble",
-        "img": "",
+        "img": "https://cdn.loveandlemons.com/wp-content/uploads/2021/01/tofu-scramble-1.jpg",
         "ingredients": ["tofu", "cherry tomatoes", "spring onion", "soughdough bread"],
         "method":[]
     },
     {
         "title": "Jackfruit tacos",
-        "img": "",
+        "img": "https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2017/05/pulled-jackfruit-tacos-macro-800x1200.jpg",
         "ingredients": ["tacos", "onion", "bbq sauce", "jackfruit", "red pepper", "avocado"],
         "method":[]
     },
     {
         "title": "Pesto pasta",
-        "img": "",
+        "img": "https://www.kimscravings.com/wp-content/uploads/2019/07/Pesto-Pasta-5.jpg",
         "ingredients": ["basil", "lemon juice", "sunflower seeds", "tenderstem broccoli", "pasta", "garlic"],
         "method":[]
     },
     {
         "title": "Pad Thai",
-        "img": "",
+        "img": "https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2016/05/vegan-pad-thai-800x1200.jpg",
         "ingredients": ["flat noodles", "soy sauce", "tofu", "carrot", "red pepper", "spring onion", "basil", "tamarind sauce"],
         "method":[]
     },
     {
         "title": "Kale salad",
-        "img": "",
+        "img": "https://cdn.loveandlemons.com/wp-content/uploads/2019/01/IMG_15972-crop2.jpg",
         "ingredients": ["kale", "mushrooms", "mustard", "sunflower seeds", "cashews", "nutritional yeast"],
         "method":[]
     },
     {
         "title": "Gyros",
-        "img": "",
+        "img": "https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2017/06/vegan-gyros-one-800x1200.jpg",
         "ingredients": [],
-        "method":""
+        "method":[]
     }
-  ]
+]
   

@@ -3,7 +3,8 @@ import { Link , Outlet} from "react-router-dom";
 
 import './Library.css'
 
-export default function Library({data, deleteRecipeCb}) {
+export default function Library({data, deleteRecipeCb, addMealCb}) {
+  const [isActive, setActive] = useState(false);
 
   return (
     <div>
@@ -11,8 +12,9 @@ export default function Library({data, deleteRecipeCb}) {
       <div>
         {
           data.map(r => (
-            <div className = "gallery" key={r.id}>
+            <div className = 'gallery' key={r.id} >
               <span className= "dish-name"> {r.title}</span>
+              <button onClick={()=> addMealCb(r.id)}>+</button>
               <button onClick={() => deleteRecipeCb(r.id)}>x</button>
               <img src = {r.img}/>
           </div>

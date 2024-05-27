@@ -1,0 +1,5 @@
+// https://developer.edamam.com/admin/applications/1409624600935?service_id=2555417725632
+api_id = "39f57b10"
+api_key = "2148477ed00cdc9d19330080c9795efc"
+
+'https://api.edamam.com/search?q=&app_id=39f57b10&app_key=2148477ed00cdc9d19330080c9795efc'
