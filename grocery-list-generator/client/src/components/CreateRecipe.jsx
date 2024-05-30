@@ -7,7 +7,6 @@ export default function CreateRecipe({addRecipeCb}) {
     const emptyRecipe = {
         title: "",
         img: "",
-        ingredients: "",
         method: ""
     }
 
@@ -23,10 +22,21 @@ export default function CreateRecipe({addRecipeCb}) {
 
     function handleSubmit(e){
         e.preventDefault()
-        const newInput = { title: recipe.title, img: recipe.img, ingredients: recipe.ingredients, method: recipe.method };
+        const newInput = { title: recipe.title, img: recipe.img, method: recipe.method };
         // console.log(newInput)
         addRecipeCb(newInput);
         setRecipe(emptyRecipe);
+    }
+
+    const [selectedValue, setSelectedValue] = useState(''); 
+    
+    function handleSelect(e) { 
+        setSelectedValue(e.target.value); 
+    }; 
+    
+    function newIngredient(e){
+        e.preventDefault()
+
     }
 
   return (
@@ -48,12 +58,28 @@ export default function CreateRecipe({addRecipeCb}) {
                         name = "img"
                         value = {recipe.img} />
                 </label>
-                <label>
+                <label >
                     Ingredients:
-                    <textarea type = "text"
+                    <div class="ingredient-inputs">
+                    <input type = "number"
                         onChange = {handleChange}
                         name = "ingredients"
-                        value = {recipe.ingredients} />
+                        // value = "ingredients" 
+                        />
+                    <select value={selectedValue} onChange={handleSelect}> 
+                        <option value="cups">Cup/s</option> 
+                        <option value="g">Grams</option> 
+                        <option value="Tbls">Table spoon/s</option> 
+                        <option value="tsps">Teaspoon/s</option> 
+                        <option value="ml">Millilitres</option> 
+                    </select> 
+                    <input type = "text"
+                        onChange = {handleChange}
+                        name = "ingredients"
+                        // value = "ingredients" 
+                        />
+                    <button onClick ={newIngredient}>+</button>
+                    </div>
                 </label>
                 <label>
                     Method:
@@ -71,3 +97,4 @@ export default function CreateRecipe({addRecipeCb}) {
     </div>
   )
 }
+

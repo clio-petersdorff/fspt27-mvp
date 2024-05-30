@@ -12,10 +12,10 @@ export default function Library({data, deleteRecipeCb, addMealCb}) {
       <div>
         {
           data.map(r => (
-            <div className = 'gallery' key={r.id} >
+            <div className = {r.selected?'gallery-selected':'gallery'} key={r.id} >
               <span className= "dish-name"> {r.title}</span>
               <button onClick={()=> addMealCb(r.id)}>+</button>
-              <button onClick={() => deleteRecipeCb(r.id)}>x</button>
+              {/* <button onClick={() => deleteRecipeCb(r.id)}>x</button> */}
               <img src = {r.img}/>
           </div>
           ))

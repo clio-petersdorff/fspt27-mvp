@@ -23,19 +23,28 @@ li {
     width:100%;
     margin: 10px;
     display: inline-block;
-    min-width: 100px;
+    min-width: 150px;
     max-width:200px;
   }
   
   .gallery:hover {
-   background-color: #338664;
+   /* background-color: #338664; */
    border-left: 5px solid #338664;
   }
   
-  /* .gallery:active {
-    border: 5px solid #bc4749;
+  .gallery-selected {
+    border-left: 5px solid #a7c957;
+    border-radius: 1%;
+    padding-left: 10px;
+    padding-right: 10px;
+    width:100%;
+    margin: 10px;
+    display: inline-block;
+    min-width: 150px;
+    max-width:200px;
+    border: 5px solid #338664;
     border-radius: 10px;
-  } */
+  }
   
   h1{
     text-align: center;
