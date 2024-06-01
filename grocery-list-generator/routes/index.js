@@ -54,7 +54,7 @@ router.put("/Recipes/:id", async function(req,res){
     const results = await db(`SELECT * FROM Recipes WHERE id = ${+req.params.id}`);
     if (results.data.length === 1) {
       sqlQuery = `UPDATE Recipes 
-      SET selected = !selected
+      SET selected =  NOT selected
       WHERE id = ${+req.params.id}`;
       await db(sqlQuery);
       // return table so that you can see it added the item

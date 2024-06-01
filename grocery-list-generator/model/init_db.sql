@@ -14,26 +14,27 @@ SET foreign_key_checks = 1;
 
 CREATE TABLE Recipes
 (
-    id int IDENTITY(1,1) PRIMARY KEY,
+    id int AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(40) not null, 
     method VARCHAR(500) not null, 
     img VARCHAR(200) not null, 
-    selected BOOLEAN NOT NULL DEFAULT FALSE,
+    selected BOOLEAN NOT NULL DEFAULT FALSE
 
-)
+);
 
 CREATE TABLE Ingredients
 (
-    ingredientID int IDENTITY(1,1) PRIMARY KEY,
+    ingredientID int AUTO_INCREMENT PRIMARY KEY,
+    amount int NOT NULL,
+    measure nchar(50) NOT NULL,
     ingredient int NOT NULL
-)
+);
 
 CREATE TABLE RecipesIngredients
 (
     id int NOT NULL,
     ingredientID int NOT NULL,
-    amount int NOT NULL,
-    measure nchar(50) NOT NULL,
+
     CONSTRAINT PK_RecipeIngredient PRIMARY KEY
     (
         id,
@@ -41,7 +42,7 @@ CREATE TABLE RecipesIngredients
     ),
     FOREIGN KEY (id) REFERENCES Recipes (id),
     FOREIGN KEY (ingredientID) REFERENCES Ingredients (ingredientID)
-)
+);
 
 INSERT INTO Recipes (title, img, method) VALUES
 ('Mushroom carbonara', 'https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2020/04/vegan-carbonara-portion-800x1200.jpg', '[]'),
@@ -55,8 +56,3 @@ INSERT INTO Recipes (title, img, method) VALUES
 ('Pad Thai', 'https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2016/05/vegan-pad-thai-800x1200.jpg', '[]'),
 ('Kale salad', 'https://cdn.loveandlemons.com/wp-content/uploads/2019/01/IMG_15972-crop2.jpg', '[]'),
 ('Gyros', 'https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2017/06/vegan-gyros-one-800x1200.jpg','[]');
-
--- SELECT title, RoomNumber
--- FROM StudentClassroom
--- JOIN Students ON Students.StudentID = StudentClassroom.StudentID
--- JOIN Classrooms ON Classrooms.ClassroomID = StudentClassroom.ClassroomID

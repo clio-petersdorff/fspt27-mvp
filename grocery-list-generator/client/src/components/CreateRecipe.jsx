@@ -12,12 +12,27 @@ export default function CreateRecipe({addRecipeCb}) {
 
     const [recipe, setRecipe] = useState(emptyRecipe)
 
+    const emptyIngredient = {
+        ingredientName: "",
+        ingredientMeasure: "",
+        ingredientAmount: ""
+    }
+
+    const [ingredients, setIngredients] = useState(emptyIngredient)
+    const [ingredientsList, setIngredientsList] = useState([])
+
+
     function handleChange(e){
         const value = e.target.value;
         setRecipe({
           ...recipe,
           [e.target.name]: value
         });
+        setIngredients({
+            ...ingredients,
+            [e.target.name]: value
+          });
+        //   console.log(ingredients)
     }
 
     function handleSubmit(e){
@@ -28,15 +43,27 @@ export default function CreateRecipe({addRecipeCb}) {
         setRecipe(emptyRecipe);
     }
 
+    // Drop down for measurement (cups, ml, etc)
     const [selectedValue, setSelectedValue] = useState(''); 
     
     function handleSelect(e) { 
-        setSelectedValue(e.target.value); 
+        setSelectedValue(e.target.value);
+        setIngredients({
+            ...ingredients,
+            ingredientMeasure: e.target.value // Update ingredientMeasure with selected value
+        });
+         
     }; 
     
-    function newIngredient(e){
+    // Add ingredient button
+    function addIngredient(e){
         e.preventDefault()
-
+        console.log("click")
+        setIngredientsList([
+            ... ingredientsList, ingredients
+        ])
+        console.log(ingredientsList)
+        setIngredients(emptyIngredient)
     }
 
   return (
@@ -60,25 +87,39 @@ export default function CreateRecipe({addRecipeCb}) {
                 </label>
                 <label >
                     Ingredients:
-                    <div class="ingredient-inputs">
+                    <div>
+                        {
+                            ingredientsList && ingredientsList.map((i, index) => (
+                                <ul>
+                                    <li key={index}>
+                                        {i.ingredientAmount} {i.ingredientMeasure !== 'na'?i.ingredientMeasure:null} {i.ingredientName}
+                                    </li>
+                                </ul>
+                            ))
+                        }                        
+                    </div>
+
+                    <div className="ingredient-inputs">
                     <input type = "number"
                         onChange = {handleChange}
-                        name = "ingredients"
-                        // value = "ingredients" 
+                        name = "ingredientAmount"
+                        value = {ingredients.ingredientAmount} 
                         />
                     <select value={selectedValue} onChange={handleSelect}> 
-                        <option value="cups">Cup/s</option> 
+                        <option value = "na">NA</option> 
+                        <option value = "cup">Cup/s</option> 
                         <option value="g">Grams</option> 
-                        <option value="Tbls">Table spoon/s</option> 
-                        <option value="tsps">Teaspoon/s</option> 
-                        <option value="ml">Millilitres</option> 
+                        <option value="tbls">Table spoon/s</option> 
+                        <option value="tsp">Teaspoon/s</option> 
+                        <option value="ml">Millilitres</option>                     
+
                     </select> 
                     <input type = "text"
                         onChange = {handleChange}
-                        name = "ingredients"
-                        // value = "ingredients" 
+                        name = "ingredientName"
+                        value = {ingredients.ingredientName} 
                         />
-                    <button onClick ={newIngredient}>+</button>
+                    <button onClick ={addIngredient}>+</button>
                     </div>
                 </label>
                 <label>

@@ -5,6 +5,7 @@ import './App.css'
 import Library from './components/Library.jsx'
 import CreateRecipe from './components/CreateRecipe.jsx'
 import Schedule from './components/Schedule.jsx'
+import SingleRecipe from './components/SingleRecipe.jsx'
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
     getRecipes();
   }, []);
   
+  // Get recipes from recipe library
   async function getRecipes(){
     try {
       const response = await fetch('/api/Recipes', { method: "GET" })
@@ -33,6 +35,7 @@ export default function App() {
     }
   }
 
+  // Add new recipe (from form) to recipe library
   async function addNewRecipe(input){
     try{
       const response = await fetch('/api/Recipes', { 
@@ -55,6 +58,7 @@ export default function App() {
     }
   }
 
+  // Delete recipe from recipe library
   async function deleteRecipe(ID){
     try {
       const response = await fetch(`/api/Recipes/${ID}`, { method: "DELETE" })
@@ -72,8 +76,9 @@ export default function App() {
       console.log(`Network Error: ${e.message}`)
     }
   }
-
-  async function addMeal(ID){
+  
+  // Add meal to schedule
+  async function addMeal(ID) {
     try {
       const response = await fetch(`/api/Recipes/${ID}`, { method: "PUT" })
       console.log(response.ok)
@@ -89,30 +94,71 @@ export default function App() {
       console.log(`Network Error: ${e.message}`)
     }
   }
+
+  // Delete meal from schedule
+  async function deleteFromSchedule(ID) {
+    try {
+      const response = await fetch(`/api/Recipes/${ID}`, { method: "PUT" })
+      console.log(response.ok)
+      if (response.ok){ 
+        const data = await response.json()
+        // console.log('Response Data:', data); // Log the response data
+        setRecipeList(data)
+        console.log('Recipe List State:', recipeList); // Log the state before rendering
+
+      } else {
+        console.log(`Server Error: ${response.status}, ${response.statusText}`)
+        const errorData = await response.json()
+        console.log(errorData.error)
+      }
+    } catch (e){
+      console.log(`Network Error: ${e.message}`)
+    }
+  }
   
   return (
     <div>
-      <nav>
-        <div className = "nav-bar">
-          <Link to="/library">My Recipes</Link>
+      {/* Nav Bar */}
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className = "container-fluid">
+          <a className="navbar-brand" href="#">Grocery Planner</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
         </div>
-        <div className = "nav-bar">
-          <Link to="/new-recipe">Create new recipe</Link>
-        </div>
-        <div className = "nav-bar">
-          <Link to="/schedule">Schedule</Link>
+
+        <div className = "collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className = "nav-item">
+              <Link to="/">My Recipes</Link>
+            </li>
+            <li className = "nav-item">
+              <Link to="/schedule">Schedule</Link>
+            </li>
+            <li className = "nav-item">
+              <Link to="/new-recipe">Create new recipe</Link>
+            </li>
+            <li className = "nav-item">
+              <Link to="/single-recipe">Single Recipe</Link>
+            </li>
+          </ul>
         </div>
       </nav>
-      <h1>Grocery planner</h1>
-
-
+      
       <Routes>
-        <Route path = "/schedule" element = {<Schedule data = {recipeList}/>}/>
-        <Route path = "/library" element = {<Library  data = {recipeList} 
-                                                      deleteRecipeCb = {deleteRecipe}
-                                                      addMealCb = {addMeal}/>}/>
+        <Route path = "/" element = {<Library  data = {recipeList} 
+                                              deleteRecipeCb = {deleteRecipe}
+                                              addMealCb = {addMeal}
+                                              deleteFromScheduleCb = {deleteFromSchedule}/>}/>
+        <Route path = "/schedule" element = {<Schedule recipeList = {recipeList}
+                                                        deleteFromScheduleCb = {deleteFromSchedule}/>}/>
+
         <Route path = "/new-recipe" element = {<CreateRecipe addRecipeCb = {addNewRecipe}/>}/>
+        <Route path = "/single-recipe" element = {<SingleRecipe/>}/>
       </Routes>
+
+
+      {/* <h1>Grocery planner</h1> */}
 
     </div>
   )
