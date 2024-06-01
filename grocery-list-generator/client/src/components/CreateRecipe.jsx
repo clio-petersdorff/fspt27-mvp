@@ -37,9 +37,30 @@ export default function CreateRecipe({addRecipeCb}) {
 
     function handleSubmit(e){
         e.preventDefault()
-        const newInput = { title: recipe.title, img: recipe.img, method: recipe.method };
-        // console.log(newInput)
-        addRecipeCb(newInput);
+        console.log(e)
+        
+        // const recipeInput = { title: recipe.title, img: recipe.img, method: recipe.method };
+        // console.log("Recipe input: ", recipeInput)
+
+        const ingredientInput = ingredientsList.map(i => (
+            {
+                ingredientName: i.ingredientName, 
+                ingredientAmount: +i.ingredientAmount, 
+                ingredientMeasure: i.ingredientMeasure}
+            ))
+        // console.log("Ingredients: ", ingredientInput)
+
+        const input = {
+            title: recipe.title, 
+            img: recipe.img, 
+            method: recipe.method, 
+            ingredients: ingredientInput
+        }
+        
+        console.log(input)
+
+        addRecipeCb(input);
+
         setRecipe(emptyRecipe);
     }
 
@@ -58,11 +79,9 @@ export default function CreateRecipe({addRecipeCb}) {
     // Add ingredient button
     function addIngredient(e){
         e.preventDefault()
-        console.log("click")
         setIngredientsList([
             ... ingredientsList, ingredients
         ])
-        console.log(ingredientsList)
         setIngredients(emptyIngredient)
     }
 

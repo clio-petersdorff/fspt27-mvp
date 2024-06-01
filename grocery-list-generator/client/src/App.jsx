@@ -47,6 +47,7 @@ export default function App() {
     })
     if (response.ok){
       const data = await response.json()
+      console.log(data)
       setRecipeList(data)
     }else{
       console.log(`Server Error: ${response.status}, ${response.statusText}`)
@@ -56,6 +57,17 @@ export default function App() {
     }catch(e){
       console.log(`Network Error: ${e.message}`)
     }
+    // try{
+    //   const response = await fetch('/api/Ingredients', { 
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify(ingredientInput)
+    //   })
+    // }catch(e){
+    //   console.log(`Network Error: ${e.message}`)
+    // }
   }
 
   // Delete recipe from recipe library

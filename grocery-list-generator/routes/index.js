@@ -19,6 +19,17 @@ router.get("/Recipes", async function(req, res) {
   }
 });
 
+// GET all ingredients in library
+router.get("/Ingredients", async function(req, res) {
+  console.log("GETTING")
+  try {
+    const results = await db("SELECT * FROM Ingredients;");
+    res.status(200).send(results.data);
+  } catch (e) {
+    res.status(500).send({ error: e.message });
+  }
+});
+
 // GET a specific recipe
 router.get("/Recipes/:id", async function(req, res) {
   try {
@@ -33,20 +44,45 @@ router.get("/Recipes/:id", async function(req, res) {
   }
 });
 
-// POST a new recipe
-router.post("/Recipes", async function(req, res){
-  console.log(req.body);
-  console.log("adding new recipe to Recipes");
-  const { title, img, method } = req.body;
+
+// POST a new recipe with ingredients
+router.post('/Recipes', async function(req, res) {
+  // console.log(req.body);
+  console.log('adding new recipe to Recipes');
+  const { title, img, method, ingredients } = req.body;
+  // console.log(title)
   try {
-    const sql = `INSERT INTO Recipes (title, img, method) VALUES ('${title}','${img}','${method}')`;
-    await db(sql);
-    const results = await db("SELECT * FROM Recipes;");
-    res.status(201).send(results.data);
+
+    // Insert the new recipe
+    const result = await db(
+      `INSERT INTO Recipes (title, img, method) VALUES ('${title}','${img}','${method}');
+      SELECT LAST_INSERT_ID() as lastRecipeId;`
+    );
+    console.log("sql respone: ", result.data[0].insertId)
+
+    // Get the last inserted recipe ID
+    const lastRecipeId = result.data[0].insertId;
+    console.log('Last Inserted Recipe ID:', lastRecipeId);
+
+    // Insert the ingredients
+    const ingredientPromises = ingredients.map(i => (
+      db(
+        `INSERT INTO Ingredients (recipeID, ingredientName, ingredientAmount, ingredientMeasure)
+        VALUES (${lastRecipeId}, "${i.ingredientName}", ${i.ingredientAmount}, "${i.ingredientMeasure}");`
+      )
+    ))
+
+    await Promise.all(ingredientPromises);
+
+    const results = await db('SELECT * FROM Recipes');
+    res.status(201).send(results);
   } catch (e) {
+    console.error('Error occurred:', e);
     res.status(500).send({ error: e.message });
   }
-})
+});
+
+
 
 // PUT to select a meal
 router.put("/Recipes/:id", async function(req,res){

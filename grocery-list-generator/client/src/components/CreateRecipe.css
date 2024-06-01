@@ -1,7 +1,7 @@
 .form-input {
     display: flex;
     flex-direction: column;
-    max-width: 500px; /* Adjust the width as needed */
+    max-width: 600px; /* Adjust the width as needed */
     margin: 0 auto; /* Center the form horizontally */
     padding: 20px;
     border: 1px solid #ccc;
@@ -33,7 +33,7 @@
 
   .ingredient-inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr; /* Define three columns */
+    grid-template-columns: 1fr 1fr 3fr; /* Define three columns */
     gap: 10px; /* Add some space between columns */
     align-items: center; /* Align items vertically center */
 }
