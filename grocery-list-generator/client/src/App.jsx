@@ -193,14 +193,17 @@ export default function App() {
             <li className = "nav-item">
               <Link to="/">My Recipes</Link>
             </li>
-            <li className = "nav-item">
+            {/* <li className = "nav-item">
               <Link to="/schedule">Schedule</Link>
-            </li>
+            </li> */}
             <li className = "nav-item">
               <Link to="/new-recipe">Create new recipe</Link>
             </li>
             <li className = "nav-item">
               <Link to="/single-recipe">Single Recipe</Link>
+            </li>
+            <li className = "nav-item">
+              <Link to="/grocery-list">My grocery list</Link>
             </li>
           </ul>
         </div>

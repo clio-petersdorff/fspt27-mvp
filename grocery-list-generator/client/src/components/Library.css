@@ -15,20 +15,20 @@ li {
   }
   
   .gallery {
-    border: 1px solid grey;
-    border-left: 5px solid #a7c957;
-    border-radius: 1%;
+    border: 1px solid lightgrey;
+    /* border-left: 5px solid #a7c957; */
+    border-radius: 5%;
     padding-left: 10px;
     padding-right: 10px;
     width:100%;
     margin: 10px;
     display: inline-block;
     min-width: 150px;
-    max-width:200px;
+    max-width: 250px;
   }
   
   .gallery-selected {
-    border-left: 5px solid #a7c957;
+    /* border-left: 5px solid #a7c957; */
     border-radius: 1%;
     padding-left: 10px;
     padding-right: 10px;
@@ -36,7 +36,7 @@ li {
     margin: 10px;
     display: inline-block;
     min-width: 150px;
-    max-width:200px;
+    max-width:250px;
     border: 5px solid #338664;
     border-radius: 10px;
   }
@@ -56,6 +56,7 @@ li {
     width: 100%;
     height: 150px;
     object-fit: cover;
+    border-radius:2%;
   }
   
   
@@ -81,18 +82,16 @@ li {
     
   }
 
-  .btn {
+  .btn-primary {
     background-color: #a7c957;
     margin: 1em;
+    border-color:#338664;
+    font-size: 14px;
+
   }
 
   .btn:hover {
     background-color:  #338664
-  }
-
-  .btn-sm {
-    background-color: #a7c957;
-    margin: 1em;
   }
 
   .badge {
@@ -102,5 +101,51 @@ li {
 
   .text-bg-secondary {
     background-color: #a7c957;
+  }
 
+  .btn-secondary {
+    color:black;
+    font-weight:lighter;
+    font-size: 14px;
+    background-color: lightgrey;
+    border:0px;
+    margin: 1em;
+  }
+
+  .btn-lg {
+    background-color: #a7c957;
+    margin: 1em;
+    border-color:#338664;
+    font-size: 18px;
+  }
+
+  .dish-name {
+    padding: 10px 5px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .labels {
+    border: 0px;
+    padding:5px 5px;
+    margin: 20px 1px;
+    border-radius: 5%;
+    background-color: rgb(240, 239, 239);
+  }
+
+  .show-details {
+    border: 1px solid lightgrey;
+    /* border-left: 5px solid #a7c957; */
+    border-radius: 5%;
+    padding-left: 10px;
+    padding-right: 10px;
+    width:100%;
+    margin: 10px;
+    display: inline-block;
+    min-width: 200px;
+    max-width: 400px;
+  }
+
+  .selected {
+    border: 5px solid #338664;
   }
