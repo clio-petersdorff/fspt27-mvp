@@ -6,6 +6,7 @@ import Library from './components/Library.jsx'
 import CreateRecipe from './components/CreateRecipe.jsx'
 import Schedule from './components/Schedule.jsx'
 import SingleRecipe from './components/SingleRecipe.jsx'
+import GroceryList from './components/GroceryList.jsx'
 
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
   async function getRecipes(){
     try {
       const response = await fetch('/api/Recipes', { method: "GET" })
-      console.log(response.ok)
+      // console.log(response.ok)
       if (response.ok){ 
         const data = await response.json()
         // console.log(data)
@@ -127,6 +128,8 @@ export default function App() {
       console.log(`Network Error: ${e.message}`)
     }
   }
+
+
   
   return (
     <div>
@@ -167,6 +170,7 @@ export default function App() {
 
         <Route path = "/new-recipe" element = {<CreateRecipe addRecipeCb = {addNewRecipe}/>}/>
         <Route path = "/single-recipe" element = {<SingleRecipe/>}/>
+        <Route path = "/grocery-list" element = {<GroceryList data = {recipeList}/>}/>
       </Routes>
 
 

@@ -123,6 +123,57 @@ router.delete("/Recipes/:id", async function(req, res) {
   }
 });
 
+// POST ingredients from selected recipes to Groceries table
+router.post("/Groceries", async function(req,res){
+    idArr = req.body.join(",")
+    console.log(idArr)
 
+    try {
+      if(idArr){
+        const existingRecipes = await db(`SELECT DISTINCT recipeID FROM GroceryList;`)
+        console.log("Existing recipes: ", existingRecipes.data)
+
+        await db(
+          `INSERT INTO GroceryList (recipeID, ingredientName, ingredientAmount, ingredientMeasure)
+          SELECT recipeID, ingredientName, ingredientAmount, ingredientMeasure FROM Ingredients 
+          WHERE recipeID IN (${idArr});`
+          );        
+      }
+
+      const results = await db("SELECT * FROM GroceryList;");
+      // console.log(results.data)
+      res.status(201).send(results.data);
+      // res.status(200)
+    } catch (e){
+      res.status(500).send({ error: e.message });
+    }
+})
+
+// GET all items in GROCERY LIST
+router.get("/Groceries", async function(req, res) {
+  console.log("GETTING")
+  try {
+    const results = await db("SELECT * FROM GroceryList;");
+    res.status(200).send(results.data);
+  } catch (e) {
+    res.status(500).send({ error: e.message });
+  }
+});
+
+// DELETE all items in GROCERY LIST
+router.delete("/Groceries", async function(req,res){
+  console.log("DELETE ALL")
+  try {
+    const rows = await db(`SELECT * FROM GroceryList;`);
+    // console.log(rows)
+    if (rows.data.length > 0) {
+      await db("DELETE FROM GroceryList;");
+    }
+    const results = await db("SELECT * FROM GroceryList;");
+    res.status(200).send(results.data);  
+    } catch(e){
+    res.status(500).send({ error: e.message });
+  }
+})
 
 module.exports = router;

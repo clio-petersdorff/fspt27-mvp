@@ -6,9 +6,14 @@ import './Library.css'
 export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, addMealCb}) {
 
   let navigate = useNavigate(); 
+
   const createNew = () =>{ 
     let path = `/new-recipe`; 
     navigate(path);
+  }
+
+  const generateList = () =>{
+    navigate(`/grocery-list`)
   }
 
 
@@ -21,7 +26,7 @@ export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, add
           data.map(r => (
             <div className = {r.selected?'gallery-selected':'gallery'} key={r.id} >
               <span className= "dish-name"> {r.title}</span>
-              {/* <button onClick={() => deleteRecipeCb(r.id)}>x</button> */}
+              <button onClick={() => deleteRecipeCb(r.id)}>x</button>
               <img src = {r.img}/>
               <button className= "btn" onClick={()=> addMealCb(r.id)}>Add to plan</button>
           </div>

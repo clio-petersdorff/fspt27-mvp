@@ -52,10 +52,11 @@ CREATE TABLE Ingredients
 
 CREATE TABLE GroceryList
 (
-    ingredientID int AUTO_INCREMENT PRIMARY KEY,
-    amount int NOT NULL,
-    measure nchar(50) NOT NULL,
-    ingredient int NOT NULL
+    groceryID int AUTO_INCREMENT PRIMARY KEY,
+    recipeID int NOT NULL,
+    ingredientName VARCHAR(100) NOT NULL,
+    ingredientAmount int NOT NULL,
+    ingredientMeasure  VARCHAR(50) NOT NULL
 );
 
 
