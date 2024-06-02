@@ -12,6 +12,8 @@ import GroceryList from './components/GroceryList.jsx'
 export default function App() {
   
   const [recipeList, setRecipeList] = useState([])
+  // const [groceryList, setGroceryList] = useState([])
+
 
   useEffect(() => {
     getRecipes();
@@ -58,17 +60,6 @@ export default function App() {
     }catch(e){
       console.log(`Network Error: ${e.message}`)
     }
-    // try{
-    //   const response = await fetch('/api/Ingredients', { 
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify(ingredientInput)
-    //   })
-    // }catch(e){
-    //   console.log(`Network Error: ${e.message}`)
-    // }
   }
 
   // Delete recipe from recipe library
@@ -129,8 +120,63 @@ export default function App() {
     }
   }
 
+  // DELETE current grocery list
+  async function deleteAllGroceryItems(){
+    try {
+        const response = await fetch('/api/Groceries/', {  method: "DELETE" })
+        // console.log(response.ok)
+        if (response.ok){ 
+            // const data = await response.json()
+            console.log("Grocery list cleared")
+            // console.log(data)
+            // setGroceryList([])
 
-  
+        } else {
+            console.log(`Server Error: ${response.status}, ${response.statusText}`)
+            const errorData = await response.json()
+            console.log(errorData.error)
+        }
+        } catch (e){
+        console.log(`Network Error: ${e.message}`)
+        }
+  }
+
+// POST ingredients to groceryList based on recipe ids
+  async function generateGroceryList(recipeList){
+      
+      // // Clear current list
+      // deleteAllGroceryItems()
+
+      // Get current selection of ids
+      let selectedIDs = []
+      recipeList.map(r => (r.selected?selectedIDs.push(r.id):null))
+      console.log(selectedIDs)
+
+      // re-populate grocery list table based on current selection of ids
+      try {
+      const response = await fetch('/api/Groceries/', { 
+          method: "POST" ,
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(selectedIDs)
+      })
+      if (response.ok){ 
+        console.log("grocery list updated")
+          // const data = await response.json()
+          // console.log(data)
+          // setGroceryList(data)
+        } else{
+        console.log(`Server Error: ${response.status}, ${response.statusText}`)
+        const errorData = await response.json()
+        console.log(errorData.error)
+      }
+      } catch (e){
+      console.log(`Network Error: ${e.message}`)
+      }
+  }
+
+
   return (
     <div>
       {/* Nav Bar */}
@@ -164,13 +210,15 @@ export default function App() {
         <Route path = "/" element = {<Library  data = {recipeList} 
                                               deleteRecipeCb = {deleteRecipe}
                                               addMealCb = {addMeal}
-                                              deleteFromScheduleCb = {deleteFromSchedule}/>}/>
-        <Route path = "/schedule" element = {<Schedule recipeList = {recipeList}
-                                                        deleteFromScheduleCb = {deleteFromSchedule}/>}/>
+                                              deleteFromScheduleCb = {deleteFromSchedule}
+                                              deleteAllGroceryItemsCb = {deleteAllGroceryItems}
+                                              generateGroceryListCb = {generateGroceryList}/>}/>
+        {/* <Route path = "/schedule" element = {<Schedule recipeList = {recipeList}
+                                                        deleteFromScheduleCb = {deleteFromSchedule}/>}/> */}
 
         <Route path = "/new-recipe" element = {<CreateRecipe addRecipeCb = {addNewRecipe}/>}/>
         <Route path = "/single-recipe" element = {<SingleRecipe/>}/>
-        <Route path = "/grocery-list" element = {<GroceryList data = {recipeList}/>}/>
+        <Route path = "/grocery-list" element = {<GroceryList deleteAllGroceryItemsCb = {deleteAllGroceryItems}/>}/>
       </Routes>
 
 

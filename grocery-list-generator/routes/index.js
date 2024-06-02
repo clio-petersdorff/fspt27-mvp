@@ -130,14 +130,25 @@ router.post("/Groceries", async function(req,res){
 
     try {
       if(idArr){
-        const existingRecipes = await db(`SELECT DISTINCT recipeID FROM GroceryList;`)
-        console.log("Existing recipes: ", existingRecipes.data)
+        // const existingRecipes = await db(`SELECT DISTINCT recipeID FROM GroceryList;`)
+        // console.log("Existing recipes: ", existingRecipes.data)
+
+        // await db(
+        //   `INSERT INTO GroceryList (recipeID, ingredientName, ingredientAmount, ingredientMeasure)
+        //   SELECT recipeID, ingredientName, ingredientAmount, ingredientMeasure FROM Ingredients 
+        //   WHERE recipeID IN (${idArr});`
+        //   );        
 
         await db(
-          `INSERT INTO GroceryList (recipeID, ingredientName, ingredientAmount, ingredientMeasure)
-          SELECT recipeID, ingredientName, ingredientAmount, ingredientMeasure FROM Ingredients 
-          WHERE recipeID IN (${idArr});`
-          );        
+          `INSERT INTO GroceryList (ingredientName, ingredientAmount, ingredientMeasure)
+          SELECT ingredientName, totalAmount, ingredientMeasure 
+          FROM (
+              SELECT ingredientName, ingredientMeasure, SUM(ingredientAmount) AS totalAmount
+              FROM Ingredients
+              WHERE recipeID IN (${idArr})
+              GROUP BY ingredientName, ingredientMeasure
+          ) AS SummedIngredients;`
+        )
       }
 
       const results = await db("SELECT * FROM GroceryList;");
@@ -153,7 +164,8 @@ router.post("/Groceries", async function(req,res){
 router.get("/Groceries", async function(req, res) {
   console.log("GETTING")
   try {
-    const results = await db("SELECT * FROM GroceryList;");
+    const results = await db(
+      `SELECT * FROM GroceryList;`)
     res.status(200).send(results.data);
   } catch (e) {
     res.status(500).send({ error: e.message });
