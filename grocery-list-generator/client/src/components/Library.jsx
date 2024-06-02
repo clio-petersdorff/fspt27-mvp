@@ -5,7 +5,12 @@ import './Library.css'
 
 export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, addMealCb, deleteAllGroceryItemsCb, generateGroceryListCb}) {
 
-  let [popUpRecipe, setPopUpRecipe] = useState({})
+  // let [popUpRecipe, setPopUpRecipe] = useState({})
+  let arr = []
+  data.map(r=>(r.selected===1?arr.push(r.selected):null))
+  let s = arr.length >0 ? true : false
+  let [selected, setSelected] = useState(s)
+
   let [showDetails, setShowDetails] = useState('')
 
   let navigate = useNavigate(); 
@@ -22,33 +27,22 @@ export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, add
   }
 
   const showRecipe = async (ID) => {
-    try {
-      const response = await fetch(`/api/Recipes/${ID}`, { method: "GET" })
-      console.log(response.ok)
-      if (response.ok){ 
-        const data = await response.json()
-        console.log(data)
-        setPopUpRecipe(data)
-        if (showDetails === ID){
-          setShowDetails("")
-        } else {
-          setShowDetails(ID)
-        }
-        
-      } else {
-        console.log(`Server Error: ${response.status}, ${response.statusText}`)
-        const errorData = await response.json()
-        console.log(errorData.error)
-      }
-    } catch (e){
-      console.log(`Network Error: ${e.message}`)
+    if (showDetails === ID){
+      setShowDetails("")
+    } else {
+      setShowDetails(ID)
     }
   }
 
   return (
     <div>
       <div>
-        <h2>This weeks recipes: </h2>
+        {
+          <h2> This weeks recipes: </h2>
+        }
+
+        
+        
         <div className = "row">
           {data.map((r) => (
             r.selected ? (
@@ -86,6 +80,8 @@ export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, add
         }
       </div>
       <button className="btn btn-lg" onClick={createNew}>Create New Recipe</button>
+      <button className = "btn btn-lg" onClick={() => generateList()}>Generate grocery list</button>
+
 
       <div>
         <Outlet/>

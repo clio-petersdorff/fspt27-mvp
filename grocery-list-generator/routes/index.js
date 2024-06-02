@@ -47,6 +47,7 @@ router.get("/Recipes/:id", async function(req, res) {
 
 // POST a new recipe with ingredients
 router.post('/Recipes', async function(req, res) {
+  
   // console.log(req.body);
   console.log('adding new recipe to Recipes');
   const { title, img, method, ingredients } = req.body;
@@ -130,15 +131,6 @@ router.post("/Groceries", async function(req,res){
 
     try {
       if(idArr){
-        // const existingRecipes = await db(`SELECT DISTINCT recipeID FROM GroceryList;`)
-        // console.log("Existing recipes: ", existingRecipes.data)
-
-        // await db(
-        //   `INSERT INTO GroceryList (recipeID, ingredientName, ingredientAmount, ingredientMeasure)
-        //   SELECT recipeID, ingredientName, ingredientAmount, ingredientMeasure FROM Ingredients 
-        //   WHERE recipeID IN (${idArr});`
-        //   );        
-
         await db(
           `INSERT INTO GroceryList (ingredientName, ingredientAmount, ingredientMeasure)
           SELECT ingredientName, totalAmount, ingredientMeasure 

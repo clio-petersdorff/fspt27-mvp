@@ -14,7 +14,6 @@ export default function App() {
   const [recipeList, setRecipeList] = useState([])
   // const [groceryList, setGroceryList] = useState([])
 
-
   useEffect(() => {
     getRecipes();
   }, []);
@@ -120,27 +119,6 @@ export default function App() {
     }
   }
 
-  // DELETE current grocery list
-  async function deleteAllGroceryItems(){
-    try {
-        const response = await fetch('/api/Groceries/', {  method: "DELETE" })
-        // console.log(response.ok)
-        if (response.ok){ 
-            // const data = await response.json()
-            console.log("Grocery list cleared")
-            // console.log(data)
-            // setGroceryList([])
-
-        } else {
-            console.log(`Server Error: ${response.status}, ${response.statusText}`)
-            const errorData = await response.json()
-            console.log(errorData.error)
-        }
-        } catch (e){
-        console.log(`Network Error: ${e.message}`)
-        }
-  }
-
 // POST ingredients to groceryList based on recipe ids
   async function generateGroceryList(recipeList){
       
@@ -154,7 +132,7 @@ export default function App() {
 
       // re-populate grocery list table based on current selection of ids
       try {
-      const response = await fetch('/api/Groceries/', { 
+      const response = await fetch('/api/Groceries', { 
           method: "POST" ,
           headers: {
               "Content-Type": "application/json"
@@ -176,6 +154,25 @@ export default function App() {
       }
   }
 
+  // DELETE current grocery list
+  async function deleteAllGroceryItems(){
+    try {
+        const response = await fetch('/api/Groceries', {  method: "DELETE" })
+        // console.log(response.ok)
+        if (response.ok){ 
+            const data = await response.json()
+            console.log("Grocery list cleared")
+            setGroceries(data)
+
+        } else {
+            console.log(`Server Error: ${response.status}, ${response.statusText}`)
+            const errorData = await response.json()
+            console.log(errorData.error)
+        }
+        } catch (e){
+        console.log(`Network Error: ${e.message}`)
+        }
+  }
 
   return (
     <div>
