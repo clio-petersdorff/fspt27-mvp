@@ -17,7 +17,7 @@ CREATE TABLE Recipes
 (
     id int AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(40) not null, 
-    method VARCHAR(500) not null, 
+    method TEXT not null, 
     img VARCHAR(200) not null, 
     selected BOOLEAN NOT NULL DEFAULT FALSE
 

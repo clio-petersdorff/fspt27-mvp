@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link , Outlet} from "react-router-dom";
+import { Link , Outlet, useNavigate} from "react-router-dom";
 
 import './CreateRecipe.css'
 
@@ -60,8 +60,8 @@ export default function CreateRecipe({addRecipeCb}) {
         console.log(input)
 
         addRecipeCb(input);
-
         setRecipe(emptyRecipe);
+        setIngredientsList([]);
     }
 
     // Drop down for measurement (cups, ml, etc)
@@ -84,10 +84,15 @@ export default function CreateRecipe({addRecipeCb}) {
         ])
         setIngredients(emptyIngredient)
     }
+    
+    let navigate = useNavigate(); 
+    const goToLibrary = () => {
+          navigate(`/`);
+    }
 
   return (
     <div>
-        <h3>Create a new recipe</h3>
+        <h2 className = 'mt-3 mb-3'>Create a new recipe</h2>
         <form onSubmit = {handleSubmit}>
             <div className = "form-input">
                 <label>
@@ -149,7 +154,25 @@ export default function CreateRecipe({addRecipeCb}) {
                         value = {recipe.method} />
                 </label>                
             </div>
-            <button type = "submit">Submit</button>
+            <button type="submit" 
+                    className = "btn btn-lg" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#staticBackdrop"> Submit </button>
+
+            {/* <!-- Modal --> */}
+            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            Your recipe has been saved to your library!
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Create another recipe</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick = {()=>goToLibrary()}>Go to recipe library</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
         <div>
         <Outlet/>

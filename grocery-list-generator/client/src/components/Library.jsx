@@ -38,7 +38,7 @@ export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, add
     <div>
       <div>
         {
-          <h2> This weeks recipes: </h2>
+          <h2 className = 'mt-3 mb-3'> This weeks recipes: </h2>
         }
 
         
