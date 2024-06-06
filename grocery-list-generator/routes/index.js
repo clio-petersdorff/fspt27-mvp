@@ -130,6 +130,11 @@ router.post("/Groceries", async function(req,res){
     console.log(idArr)
 
     try {
+      const rows = await db(`SELECT * FROM GroceryList;`);
+      // console.log(rows)
+      if (rows.data.length > 0) {
+        await db("DELETE FROM GroceryList;");
+      }
       if(idArr){
         await db(
           `INSERT INTO GroceryList (ingredientName, ingredientAmount, ingredientMeasure)

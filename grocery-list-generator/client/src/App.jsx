@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import {Link, Route, Routes} from 'react-router-dom'
+import {Link, Route, Routes, useNavigate} from 'react-router-dom'
 
 import './App.css'
 import Library from './components/Library.jsx'
 import CreateRecipe from './components/CreateRecipe.jsx'
-import Schedule from './components/Schedule.jsx'
-import SingleRecipe from './components/SingleRecipe.jsx'
 import GroceryList from './components/GroceryList.jsx'
 
 
 export default function App() {
+
+  let navigate = useNavigate(); 
   
   const [recipeList, setRecipeList] = useState([])
   // const [groceryList, setGroceryList] = useState([])
@@ -141,9 +141,8 @@ export default function App() {
       })
       if (response.ok){ 
         console.log("grocery list updated")
-          // const data = await response.json()
-          // console.log(data)
-          // setGroceryList(data)
+        navigate('/grocery-list')
+
         } else{
         console.log(`Server Error: ${response.status}, ${response.statusText}`)
         const errorData = await response.json()
@@ -213,11 +212,8 @@ export default function App() {
                                               deleteFromScheduleCb = {deleteFromSchedule}
                                               deleteAllGroceryItemsCb = {deleteAllGroceryItems}
                                               generateGroceryListCb = {generateGroceryList}/>}/>
-        {/* <Route path = "/schedule" element = {<Schedule recipeList = {recipeList}
-                                                        deleteFromScheduleCb = {deleteFromSchedule}/>}/> */}
 
         <Route path = "/new-recipe" element = {<CreateRecipe addRecipeCb = {addNewRecipe}/>}/>
-        <Route path = "/single-recipe" element = {<SingleRecipe/>}/>
         <Route path = "/grocery-list" element = {<GroceryList deleteAllGroceryItemsCb = {deleteAllGroceryItems}/>}/>
       </Routes>
 

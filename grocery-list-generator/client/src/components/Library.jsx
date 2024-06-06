@@ -21,9 +21,7 @@ export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, add
   }
 
   const generateList = () =>{
-    deleteAllGroceryItemsCb()
     generateGroceryListCb(data)
-    navigate('/grocery-list')
   }
 
   const showRecipe = async (ID) => {
@@ -41,7 +39,6 @@ export default function Library({data, deleteRecipeCb, deleteFromScheduleCb, add
           <h2 className = 'mt-3 mb-3'> This weeks recipes: </h2>
         }
 
-        
         
         <div className = "row">
           {data.map((r) => (

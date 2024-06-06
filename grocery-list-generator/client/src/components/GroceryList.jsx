@@ -9,6 +9,7 @@ export default function GroceryList({deleteAllGroceryItems}) {
 
     useEffect(() => {
         getGroceries()
+        console.log("GETTING GROCERIES")
       }, []);
 
 
@@ -62,7 +63,7 @@ export default function GroceryList({deleteAllGroceryItems}) {
     return (
         
         <div>
-            <h2>Grocery list</h2>
+            <h2 className = 'mt-3 mb-3'>Grocery list</h2>
             <button type="button" 
                     className = "btn btn-lg" 
                     data-bs-toggle="modal" 
