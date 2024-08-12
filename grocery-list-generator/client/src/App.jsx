@@ -176,7 +176,7 @@ export default function App() {
   return (
     <div>
       {/* Nav Bar */}
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-m bg-body-tertiary">
         <div className = "container-fluid">
           <a className="navbar-brand" href="#">Grocery Planner</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -187,19 +187,19 @@ export default function App() {
         <div className = "collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className = "nav-item">
-              <Link to="/">My Recipes</Link>
+              <Link className="nav-link" to="/">My Recipes</Link>
             </li>
             {/* <li className = "nav-item">
               <Link to="/schedule">Schedule</Link>
             </li> */}
             <li className = "nav-item">
-              <Link to="/new-recipe">Create new recipe</Link>
+              <Link className="nav-link" to="/new-recipe">Create new recipe</Link>
             </li>
+            {/* <li className = "nav-item">
+              <Link className="nav-link" to="/single-recipe">Single Recipe</Link>
+            </li> */}
             <li className = "nav-item">
-              <Link to="/single-recipe">Single Recipe</Link>
-            </li>
-            <li className = "nav-item">
-              <Link to="/grocery-list">My grocery list</Link>
+              <Link className="nav-link" to="/grocery-list">My grocery list</Link>
             </li>
           </ul>
         </div>

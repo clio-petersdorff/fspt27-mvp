@@ -79,10 +79,12 @@ export default function CreateRecipe({addRecipeCb}) {
     // Add ingredient button
     function addIngredient(e){
         e.preventDefault()
-        setIngredientsList([
-            ... ingredientsList, ingredients
-        ])
-        setIngredients(emptyIngredient)
+        if (ingredients.ingredientAmount > 0) {
+            setIngredientsList([
+                ... ingredientsList, ingredients
+            ])
+            setIngredients(emptyIngredient)            
+        }
     }
     
     let navigate = useNavigate(); 

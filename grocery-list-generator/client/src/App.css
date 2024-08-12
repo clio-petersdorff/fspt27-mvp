@@ -13,7 +13,6 @@
   color: #888;
 }
 
-/* .nav-bar {
-  display: grid;
-  grid: 1fr 1fr 1fr;
-} */
+.nav-bar {
+  flex-wrap:wrap;
+}
