@@ -45,7 +45,7 @@ The Grocery Planner Web App is a web-based application that helps users organize
 
     ```sh
     DB_HOST = '127.0.0.1'
-    DB_USER = 'root'
+    DB_USER = YOUR_USERNAME
     DB_PASS = YOUR_PASSWORD
     DB_NAME = 'recipes'
     ```
@@ -95,6 +95,8 @@ All Routing is handled here.
 This component displays all saved recipes. Users can click on recipe cards to see recipe descriptions and they can add recipes to their meal plan by selected them.
 When a user clicks on the **Create new recipe** button, they are redirected to the CreateRecipe.jsx. When a user clicks on the **generate grocery list** button, all items currently in the GroceryList DB table are removed, and the table is repopulated based on the selected recipes. User is then redirected to the GroceryList.jsx component.
 
+<img width="1194" alt="recipe library" src="https://github.com/user-attachments/assets/6441966b-5af8-4f7e-bf99-f829094da97c">
+
 ### CreateRecipe.jsx
 
 This component contains a form which allows users to create their own recipes.
@@ -113,4 +115,4 @@ The DB consists of 3 tables:
 
 ## Contact
 
-- For support or inquiries, contact [cvonpetersdorff@gmail.com] or create an issue in the repository.
+- Contact cvonpetersdorff@gmail.com for issues or enquiries
